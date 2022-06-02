@@ -256,14 +256,14 @@ pub unsafe extern "C" fn wgpuRenderPassEncoderSetBindGroup(
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn wgpuComputePassEncoderDispatch(
+pub unsafe extern "C" fn wgpuComputePassEncoderDispatchWorkgroups(
     pass: id::ComputePassEncoderId,
     workgroup_count_x: u32,
     workgroup_count_y: u32,
     workgroup_count_z: u32,
 ) {
     let pass = pass.as_mut().expect("Compute pass invalid");
-    compute_ffi::wgpu_compute_pass_dispatch(
+    compute_ffi::wgpu_compute_pass_dispatch_workgroups(
         pass,
         workgroup_count_x,
         workgroup_count_y,
@@ -272,13 +272,13 @@ pub unsafe extern "C" fn wgpuComputePassEncoderDispatch(
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn wgpuComputePassEncoderDispatchIndirect(
+pub unsafe extern "C" fn wgpuComputePassEncoderDispatchWorkgroupsIndirect(
     pass: id::ComputePassEncoderId,
     indirect_buffer: id::BufferId,
     indirect_offset: u64,
 ) {
     let pass = pass.as_mut().expect("Compute pass invalid");
-    compute_ffi::wgpu_compute_pass_dispatch_indirect(pass, indirect_buffer, indirect_offset);
+    compute_ffi::wgpu_compute_pass_dispatch_workgroups_indirect(pass, indirect_buffer, indirect_offset);
 }
 
 #[no_mangle]

@@ -535,8 +535,7 @@ pub unsafe extern "C" fn wgpuBufferMapAsync(
             x => panic!("Unknown map mode: {}", x),
         },
         // TODO: Change wgpu-core to follow new API
-        callback: std::mem::transmute(callback.expect("Callback cannot be null")),
-        user_data,
+        callback: wgc::resource::BufferMapCallback::from_c(std::mem::transmute((callback.expect("Callback cannot be null"), user_data)))
     };
 
     gfx_select!(buffer => GLOBAL.buffer_map_async(buffer, offset as u64 .. (offset + size) as u64, operation))
@@ -544,7 +543,7 @@ pub unsafe extern "C" fn wgpuBufferMapAsync(
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn wgpuDevicePoll(device: id::DeviceId, force_wait: bool) {
+pub unsafe extern "C" fn wgpuDevicePoll(device: id::DeviceId, force_wait: bool) -> bool{
     gfx_select!(device => GLOBAL.device_poll(device, force_wait)).expect("Unable to poll device")
 }
 

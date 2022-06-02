@@ -1,6 +1,6 @@
 [package]
 name = "wgpu-native"
-version = "0.6.0"
+version = "0.12.0"
 authors = [
 	"Dzmitry Malyshau <kvark@mozilla.com>",
 	"Joshua Groves <josh@joshgroves.com>",
@@ -25,7 +25,7 @@ default = []
 [dependencies.wgc]
 package = "wgpu-core"
 git = "https://github.com/gfx-rs/wgpu"
-rev = "988990c"
+rev = "32af4f5"
 # path = "../wgpu/wgpu-core"
 #version = "0.11"
 features = ["raw-window-handle", "trace"]
@@ -33,7 +33,7 @@ features = ["raw-window-handle", "trace"]
 [dependencies.wgt]
 package = "wgpu-types"
 git = "https://github.com/gfx-rs/wgpu"
-rev = "988990c"
+rev = "32af4f5"
 # path = "../wgpu/wgpu-types"
 #version = "0.11"
 
@@ -46,11 +46,11 @@ thiserror = "1"
 
 [dependencies.naga]
 git = "https://github.com/gfx-rs/naga"
-rev = "f90e563"
+rev = "571302e"
 features = ["spv-in"]
 
 [build-dependencies]
-bindgen = "0.58.1"
+bindgen = "0.59.2"
 
 [workspace]
 resolver = "2"
